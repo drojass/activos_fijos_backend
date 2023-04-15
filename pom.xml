@@ -15,6 +15,22 @@
 	<description>Proyecto para la administración de Activos Fijos</description>
 	<properties>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<springfox-version>2.7.0</springfox-version>
+		<jacoco.min.coverage>0.9</jacoco.min.coverage>
+		<!-- Exlusiones de sonar.....deben concordar con las de jacoco -->
+		<sonar.exclusions>
+			**/activos.activosfijos/*,
+			**/activosfijos.common/*,
+			**/activosfijos.api/*,
+			**/activosfijos.util/*,
+			**/activosfijos.entity/*,
+			**/activosfijos.exception/*,
+			**/activosfijos.model/*,
+			**/activosfijos/dao/*,
+			**/activosfijos.repository/*
+		</sonar.exclusions>
+		<!-- Fin de exclusiones de sonar -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,27 +50,225 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>dockerDev</id>
+			<properties>
+				<activatedProperties>dockerDev</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<activatedProperties>prod</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- Esta sección permite generar los bean para detectar la versión en
+                tiempo de ejecución del proyecto https://www.vojtechruzicka.com/spring-boot-version/ -->
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+						<!-- Agregamos propiedades personalizadas -->
+						<configuration>
+							<additionalProperties>
+								<autor>Grupo ASD</autor>
+								<java.source>${maven.compiler.source}</java.source>
+								<java.version>${java.version}</java.version>
+								<application.name>${project.name}</application.name>
+								<application.description>${project.description}</application.description>
+							</additionalProperties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.1</version>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<configLocation>asd_checks.xml</configLocation>
+					<suppressionsLocation>asd_checkstyle_suppressions.xml</suppressionsLocation>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<failOnViolation>true</failOnViolation>
+					<linkXRef>true</linkXRef>
 				</configuration>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>PACKAGE</element>
+									<excludes>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.api</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.common</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.config</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.entity</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.entity.pk</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.exception</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.filter</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.job</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.message</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.model</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.repository</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.security</exclude>
+										<exclude>co.com.grupoasd.prueba.activos.activosfijos.service.iface</exclude>
+									</excludes>
+									<limits>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>${jacoco.min.coverage}</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.17.0</version>
+				<executions>
+					<execution>
+						<id>pmd-scan</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.1</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>

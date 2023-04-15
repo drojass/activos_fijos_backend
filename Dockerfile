@@ -1,19 +1,15 @@
-FROM maven:3.6.3-jdk-11-slim as BUILD
+FROM maven:3.8.3-openjdk-17 as BUILD
 WORKDIR /usr/src/app
-COPY checkstyle-asd.xml .
-COPY checkstyle-supressions.xml .
+COPY asd_checks.xml .
+COPY asd_checkstyle_suppressions.xml .
 COPY licenseheader.txt .
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY src src
 RUN mvn -B -e -C -T 1C package package -Dmaven.test.skip=true -Dcheckstyle.skip=true
-# Start with a base image containing Java runtime
-FROM openjdk:11.0.7-jdk
-# Add Maintainer Info
-LABEL maintainer="forduz@grupoasd.com.co"
-# Add a volume pointing to /tmp
+FROM openjdk:17-jdk-slim-buster
+LABEL org.opencontainers.image.source https://github.com/drojass/activos_fijos_backend
 VOLUME /tmp
-# Make port 8080 available to the world outside this container
 EXPOSE 8080
 COPY --from=BUILD /usr/src/app/target/*jar /opt/target/app.jar
 WORKDIR /opt/target
