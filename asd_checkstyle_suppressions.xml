@@ -5,11 +5,5 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-  <!--  
-  <suppress checks="JavadocStyleCheck"
-    files="FilaEjemplo1.java"
-    lines="82,108-122"/>
-   -->
-  <suppress checks="HideUtilityClassConstructor"
-    files="MainApp.java" />
+    <!--<suppress files="[\\/]co.com.grupoasd.lyra.asignaciondocumentos.entity[\\/]" checks="[a-zA-Z0-9]*"/>-->
 </suppressions>
