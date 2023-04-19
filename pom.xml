@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.5</version>
+		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>co.com.grupoasd.prueba.activos</groupId>
 	<artifactId>activosfijos</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>activosfijos</name>
+	<version>1.0.0</version>
+	<name>Activos Fijos</name>
 	<description>Proyecto para la administración de Activos Fijos</description>
 	<properties>
 		<java.version>17</java.version>
@@ -125,11 +125,6 @@
 			<artifactId>mockito-inline</artifactId>
 			<version>5.2.0</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<version>1.3.2</version>
 		</dependency>
 	</dependencies>
 
@@ -288,6 +283,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.22.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>3.0.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
