@@ -40,5 +40,7 @@ public class ActivoFijo {
     private Integer valorCompra;
     private Date fechaCompra;
     private Date fechaBaja;
+    private Integer tipoId;
+    private Integer estadoId;
     private Boolean activo;
 }
