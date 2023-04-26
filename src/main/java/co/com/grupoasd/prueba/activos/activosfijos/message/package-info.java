@@ -14,4 +14,4 @@
 /**
  * Paquete con mensajes de entrada y salida. Patron TO.
  */
-package co.com.grupoasd.dominio.proyecto.message;
+package co.com.grupoasd.prueba.activos.activosfijos.message;

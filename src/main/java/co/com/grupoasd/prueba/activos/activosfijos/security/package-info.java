@@ -14,4 +14,4 @@
 /**
  * Paquete con configuraciones y clases para manejo de autenticacion.
  */
-package co.com.grupoasd.dominio.proyecto.security;
+package co.com.grupoasd.prueba.activos.activosfijos.security;

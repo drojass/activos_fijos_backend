@@ -14,4 +14,4 @@
 /**
  * Paquete con controladores de los endpoint REST.
  */
-package co.com.grupoasd.dominio.proyecto.api;
+package co.com.grupoasd.prueba.activos.activosfijos.api;

@@ -14,4 +14,4 @@
 /**
  * Paquete con implementacion de servicios fachada.
  */
-package co.com.grupoasd.dominio.proyecto.service.impl;
+package co.com.grupoasd.prueba.activos.activosfijos.service.impl;

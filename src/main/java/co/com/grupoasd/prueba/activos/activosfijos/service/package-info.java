@@ -14,4 +14,4 @@
 /**
  * Paquete con interfaces de servicios fachada.
  */
-package co.com.grupoasd.dominio.proyecto.service;
+package co.com.grupoasd.prueba.activos.activosfijos.service;

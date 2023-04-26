@@ -14,4 +14,4 @@
 /**
  * Paquete con filtros de peticiones.
  */
-package co.com.grupoasd.dominio.proyecto.filter;
+package co.com.grupoasd.prueba.activos.activosfijos.filter;

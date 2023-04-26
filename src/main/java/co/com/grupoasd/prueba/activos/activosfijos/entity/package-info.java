@@ -14,4 +14,4 @@
 /**
  * Paquete con entidades persistentes.
  */
-package co.com.grupoasd.dominio.proyecto.entity;
+package co.com.grupoasd.prueba.activos.activosfijos.entity;

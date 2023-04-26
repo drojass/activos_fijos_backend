@@ -14,4 +14,4 @@
 /**
  * Paquete con jobs.
  */
-package co.com.grupoasd.dominio.proyecto.job;
+package co.com.grupoasd.prueba.activos.activosfijos.job;

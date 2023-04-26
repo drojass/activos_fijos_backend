@@ -14,4 +14,4 @@
 /**
  * Paquete con excepciones propias del servicio.
  */
-package co.com.grupoasd.dominio.proyecto.exception;
+package co.com.grupoasd.prueba.activos.activosfijos.exception;

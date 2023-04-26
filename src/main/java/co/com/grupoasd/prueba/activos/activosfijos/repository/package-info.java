@@ -14,4 +14,4 @@
 /**
  * Paquete con repositorios de Spring Repository.
  */
-package co.com.grupoasd.dominio.proyecto.repository;
+package co.com.grupoasd.prueba.activos.activosfijos.repository;

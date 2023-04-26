@@ -14,4 +14,4 @@
 /**
  * Paquete con configuraciones de Spring Boot.
  */
-package co.com.grupoasd.dominio.proyecto.config;
+package co.com.grupoasd.prueba.activos.activosfijos.config;

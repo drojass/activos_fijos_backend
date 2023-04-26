@@ -14,4 +14,4 @@
 /**
  * Paquete con utilitarios.
  */
-package co.com.grupoasd.dominio.proyecto.util;
+package co.com.grupoasd.prueba.activos.activosfijos.util;

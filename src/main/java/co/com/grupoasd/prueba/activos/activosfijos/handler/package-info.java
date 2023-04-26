@@ -14,4 +14,4 @@
 /**
  * Paquete de logica de negocio.
  */
-package co.com.grupoasd.dominio.proyecto.handler;
+package co.com.grupoasd.prueba.activos.activosfijos.handler;
