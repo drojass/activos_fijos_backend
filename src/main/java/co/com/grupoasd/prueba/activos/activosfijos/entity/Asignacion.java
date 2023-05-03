@@ -14,7 +14,11 @@
 package co.com.grupoasd.prueba.activos.activosfijos.entity;
 
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -24,8 +28,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "ASIGNACION")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Asignacion {
 
+    @Id
     private Integer id;
     private Integer activoId;
     private String tipoAsignacion;
