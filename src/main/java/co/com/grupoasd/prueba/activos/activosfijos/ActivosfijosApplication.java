@@ -49,8 +49,8 @@ public class ActivosfijosApplication {
     }
 
     /**
-     * Definición del Bean que permite realizar la conexión a otros servicios.
-     * RestFull
+     * Definición del Bean que permite realizar la conexión a otros servicios
+     * RestFull.
      *
      * @return rest template.
      */
