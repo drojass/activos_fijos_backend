@@ -21,6 +21,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface UbicacionRepository extends MongoRepository <Ubicacion, Integer> {
+public interface UbicacionRepository extends MongoRepository<Ubicacion, Integer> {
 
 }

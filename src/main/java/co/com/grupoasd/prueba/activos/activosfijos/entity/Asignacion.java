@@ -14,7 +14,6 @@
 package co.com.grupoasd.prueba.activos.activosfijos.entity;
 
 import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

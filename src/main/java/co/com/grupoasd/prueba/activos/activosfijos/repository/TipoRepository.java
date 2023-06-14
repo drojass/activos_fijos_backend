@@ -21,6 +21,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface TipoRepository extends MongoRepository <Tipo, Integer> {
+public interface TipoRepository extends MongoRepository<Tipo, Integer> {
 
 }

@@ -21,6 +21,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface DatoComplementarioRepository extends MongoRepository <DatoComplementario, Integer> {
+public interface DatoComplementarioRepository extends MongoRepository<DatoComplementario, Integer> {
 
 }

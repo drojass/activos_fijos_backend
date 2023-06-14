@@ -21,6 +21,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface ActivoFijoRepository extends MongoRepository <ActivoFijo, Integer> {
+public interface ActivoFijoRepository extends MongoRepository<ActivoFijo, Integer> {
 
 }

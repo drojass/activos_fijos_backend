@@ -21,6 +21,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface CategoriaRepository extends MongoRepository <Categoria, Integer> {
+public interface CategoriaRepository extends MongoRepository<Categoria, Integer> {
 
 }

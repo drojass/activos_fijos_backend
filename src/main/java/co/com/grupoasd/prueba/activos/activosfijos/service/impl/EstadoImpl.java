@@ -1,6 +1,6 @@
 /*
- * Archivo: ActivoFijoImpl.java
- * Fecha: 2022-04-19
+ * Archivo: EstadoImpl.java
+ * Fecha: 2022-06-13
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -13,33 +13,31 @@
  */
 package co.com.grupoasd.prueba.activos.activosfijos.service.impl;
 
-import co.com.grupoasd.prueba.activos.activosfijos.entity.ActivoFijo;
-import co.com.grupoasd.prueba.activos.activosfijos.handler.ActivoFijoHandler;
-import co.com.grupoasd.prueba.activos.activosfijos.service.ActivoFijoIface;
+import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
+import co.com.grupoasd.prueba.activos.activosfijos.handler.EstadoHandler;
+import co.com.grupoasd.prueba.activos.activosfijos.service.EstadoIface;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
-
 /**
- * Servicio para realizar las transacciones de Activos Fijos.
+ * Servicio para realizar las transacciones de los Estados.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
 @Service
 @AllArgsConstructor
-public class ActivoFijoImpl implements ActivoFijoIface {
+public class EstadoImpl implements EstadoIface {
     
-    private final ActivoFijoHandler activoFijoHandler;
+    private final EstadoHandler estadoHandler;
     
     /**
-     * Método para obtener el listado de los activos.
+     * Método para obtener la lista de los estados.
      *
-     * @return List ActivoFijo.
+     * @return List Estado.
      */
     @Override
-    public List<ActivoFijo> obtenerActivos() {
-        return activoFijoHandler.obtenerActivos();
+    public List<Estado> obtenerEstados() {
+        return estadoHandler.obtenerEstados();
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Archivo: ActivoFijoRepository.java
- * Fecha: 2022-04-19
+ * Archivo: EstadoIface.java
+ * Fecha: 2022-06-13
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,16 +11,17 @@
  * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
  * previstas en la Ley.
  */
-package co.com.grupoasd.prueba.activos.activosfijos.repository;
 
-import co.com.grupoasd.prueba.activos.activosfijos.entity.Proyecto;
-import org.springframework.data.mongodb.repository.MongoRepository;
+package co.com.grupoasd.prueba.activos.activosfijos.service;
+
+import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
+import java.util.List;
 
 /**
- * Repositorio para la entidad de Proyecto.
+ * Interfaz para realizar las transacciones de los Estados.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface ProyectoRepository extends MongoRepository<Proyecto, Integer> {
-
+public interface EstadoIface {
+    List<Estado> obtenerEstados();
 }

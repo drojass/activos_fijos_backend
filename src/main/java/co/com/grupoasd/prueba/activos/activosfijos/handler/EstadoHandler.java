@@ -1,5 +1,5 @@
 /*
- * Archivo: ActivoFijoRepository.java
+ * Archivo: EstadoHandler.java
  * Fecha: 2022-04-19
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
@@ -11,16 +11,33 @@
  * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
  * previstas en la Ley.
  */
-package co.com.grupoasd.prueba.activos.activosfijos.repository;
+package co.com.grupoasd.prueba.activos.activosfijos.handler;
+
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import co.com.grupoasd.prueba.activos.activosfijos.repository.EstadoRepository;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
- * Repositorio para la entidad de Estado.
+ * Manejador para realizar las transacciones de los Estados.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface EstadoRepository extends MongoRepository<Estado, Integer> {
+@Component
+@Slf4j
+@AllArgsConstructor
+public class EstadoHandler {
 
+    private final EstadoRepository estadoRepository;
+
+    /**
+     * Método que obtiene la lista de los estados.
+     * @return List Estado.
+     */
+    public List<Estado> obtenerEstados() {
+        return estadoRepository.findAll();
+    }
 }
