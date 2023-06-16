@@ -1,6 +1,6 @@
 /*
- * Archivo: Ubicacion.java
- * Fecha: 2022-04-19
+ * Archivo: UbicacionHandler.java
+ * Fecha: 2022-06-15
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,29 +11,29 @@
  * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
  * previstas en la Ley.
  */
-package co.com.grupoasd.prueba.activos.activosfijos.entity;
+package co.com.grupoasd.prueba.activos.activosfijos.handler;
 
+import co.com.grupoasd.prueba.activos.activosfijos.entity.Ubicacion;
+import co.com.grupoasd.prueba.activos.activosfijos.repository.UbicacionRepository;
 import java.util.List;
-import java.util.Map;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 
 /**
- * Entidad para la colección de ubicación.
+ * Manejador para realizar las transacciones de los Estados.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-@Document(collection = "UBICACION")
-@Data
+@Component
+@Slf4j
 @AllArgsConstructor
-@NoArgsConstructor
-public class Ubicacion {
+public class UbicacionHandler {
 
-    @Id
-    private Integer id;
-    private String descripcion;
-    private List<Map<String, Object>> camposAdicionales;
+    private final UbicacionRepository ubicacionRepository;
+
+    public List<Ubicacion> obtenerUbicaciones() {
+        return ubicacionRepository.findAll();
+    }
 }

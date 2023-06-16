@@ -1,6 +1,6 @@
 /*
- * Archivo: Ubicacion.java
- * Fecha: 2022-04-19
+ * Archivo: UbicacionIface.java
+ * Fecha: 2022-06-15
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,29 +11,17 @@
  * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
  * previstas en la Ley.
  */
-package co.com.grupoasd.prueba.activos.activosfijos.entity;
+package co.com.grupoasd.prueba.activos.activosfijos.service;
 
+import co.com.grupoasd.prueba.activos.activosfijos.entity.Ubicacion;
 import java.util.List;
-import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 
 /**
- * Entidad para la colección de ubicación.
+ * Interfaz para realizar las transacciones de las ubicaciones.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-@Document(collection = "UBICACION")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Ubicacion {
-
-    @Id
-    private Integer id;
-    private String descripcion;
-    private List<Map<String, Object>> camposAdicionales;
+public interface UbicacionIface {
+    List<Ubicacion> obtenerUbicaciones();
 }
