@@ -35,6 +35,6 @@ public class Empleado {
     private String identificacion;
     private String nombre;
     private String apellido;
-    private Integer ubicacionId;
+    private Ubicacion ubicacionId;
     private Boolean activo;
 }

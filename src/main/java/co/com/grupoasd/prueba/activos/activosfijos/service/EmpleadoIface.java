@@ -1,6 +1,6 @@
 /*
- * Archivo: Proyecto.java
- * Fecha: 2022-04-19
+ * Archivo: EmpleadoIface.java
+ * Fecha: 2022-06-20
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -11,27 +11,17 @@
  * propiedad intelectual. Su uso no autorizado dara lugar a las sanciones
  * previstas en la Ley.
  */
-package co.com.grupoasd.prueba.activos.activosfijos.entity;
+package co.com.grupoasd.prueba.activos.activosfijos.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import co.com.grupoasd.prueba.activos.activosfijos.entity.Empleado;
+import java.util.List;
 
 /**
- * Entidad para la colección de proyecto.
+ * Servicio para realizar las transacciones de los Empleados.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-@Document(collection = "PROYECTO")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Proyecto {
+public interface EmpleadoIface {
 
-    @Id
-    private Integer id;
-    private String nombre;
-    private Ubicacion ubicacionId;
+    List<Empleado> obtenerEmpleados();
 }

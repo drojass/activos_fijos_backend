@@ -1,6 +1,6 @@
 /*
- * Archivo: EstadoHandler.java
- * Fecha: 2022-06-19
+ * Archivo: ProyectoHandler.java
+ * Fecha: 2022-06-20
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -13,31 +13,26 @@
  */
 package co.com.grupoasd.prueba.activos.activosfijos.handler;
 
-
-import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
-import co.com.grupoasd.prueba.activos.activosfijos.repository.EstadoRepository;
+import co.com.grupoasd.prueba.activos.activosfijos.entity.Proyecto;
+import co.com.grupoasd.prueba.activos.activosfijos.repository.ProyectoRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * Manejador para realizar las transacciones de los Estados.
+ * Manejador para realizar las transacciones de los Empleados.
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
 @Component
 @Slf4j
 @AllArgsConstructor
-public class EstadoHandler {
+public class ProyectoHandler {
 
-    private final EstadoRepository estadoRepository;
+    private final ProyectoRepository proyectoRepository;
 
-    /**
-     * Método que obtiene la lista de los estados.
-     * @return List Estado.
-     */
-    public List<Estado> obtenerEstados() {
-        return estadoRepository.findAll();
+    public List<Proyecto> obtenerProyectos() {
+        return proyectoRepository.findAll();
     }
 }
