@@ -16,6 +16,7 @@ package co.com.grupoasd.prueba.activos.activosfijos.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -33,5 +34,6 @@ public class Proyecto {
     @Id
     private Integer id;
     private String nombre;
-    private Ubicacion ubicacionId;
+    private ObjectId ubicacionId;
+    private Ubicacion ubicacion;
 }
