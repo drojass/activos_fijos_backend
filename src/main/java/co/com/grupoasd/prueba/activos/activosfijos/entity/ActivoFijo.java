@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -29,11 +29,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "ACTIVO_FIJO")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class ActivoFijo {
 
     @Id
-    private Integer id;
+    private ObjectId id;
     private String nombre;
     private String descripcion;
     private List<SubActivo> subActivos;
@@ -49,4 +48,9 @@ public class ActivoFijo {
     private Integer tipoId;
     private Integer estadoId;
     private Boolean activo;
+
+    public ActivoFijo() {
+        this.activo = true;
+        this.fechaCompra = new Date();
+    }
 }

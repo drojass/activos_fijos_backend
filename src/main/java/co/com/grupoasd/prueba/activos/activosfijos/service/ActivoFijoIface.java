@@ -15,6 +15,7 @@ package co.com.grupoasd.prueba.activos.activosfijos.service;
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.ActivoFijo;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  * Interfaz para realizar las transacciones de Activos Fijos.
@@ -23,4 +24,8 @@ import java.util.List;
  */
 public interface ActivoFijoIface {
     List<ActivoFijo> obtenerActivos();
+
+    ActivoFijo obtenerActivo(ObjectId id);
+
+    ActivoFijo crearActivo(ActivoFijo activoFijo);
 }

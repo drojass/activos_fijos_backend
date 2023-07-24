@@ -18,9 +18,8 @@ import co.com.grupoasd.prueba.activos.activosfijos.handler.ActivoFijoHandler;
 import co.com.grupoasd.prueba.activos.activosfijos.service.ActivoFijoIface;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
-
-
 
 /**
  * Servicio para realizar las transacciones de Activos Fijos.
@@ -41,5 +40,26 @@ public class ActivoFijoImpl implements ActivoFijoIface {
     @Override
     public List<ActivoFijo> obtenerActivos() {
         return activoFijoHandler.obtenerActivos();
+    }
+
+    /**
+     * Método para obtener un activo por su ID.
+     *
+     * @return ActivoFijo.
+     */
+    @Override
+    public ActivoFijo obtenerActivo(ObjectId id) {
+        return activoFijoHandler.obtenerActivo(id);
+    }
+
+    /**
+     * Método para crear el activo fijo.
+     *
+     * @param activoFijo activo a insertar.
+     * @return ActivoFijo
+     */
+    @Override
+    public ActivoFijo crearActivo(ActivoFijo activoFijo) {
+        return activoFijoHandler.crearActivo(activoFijo);
     }
 }

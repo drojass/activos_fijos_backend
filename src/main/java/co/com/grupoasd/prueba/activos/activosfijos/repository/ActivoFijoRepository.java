@@ -14,6 +14,7 @@
 package co.com.grupoasd.prueba.activos.activosfijos.repository;
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.ActivoFijo;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
@@ -21,6 +22,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
  */
-public interface ActivoFijoRepository extends MongoRepository<ActivoFijo, Integer> {
+public interface ActivoFijoRepository extends MongoRepository<ActivoFijo, ObjectId> {
 
 }

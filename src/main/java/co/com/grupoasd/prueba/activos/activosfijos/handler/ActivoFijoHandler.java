@@ -18,6 +18,7 @@ import co.com.grupoasd.prueba.activos.activosfijos.repository.ActivoFijoReposito
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,9 +35,32 @@ public class ActivoFijoHandler {
 
     /**
      * Método que obtiene la lista de los activos fijos.
+     *
      * @return List ActivoFijo.
      */
     public List<ActivoFijo> obtenerActivos() {
         return activoFijoRepository.findAll();
     }
+
+    /**
+     * Método para obtener el activo por su ID.
+     *
+     * @param id id del activo.
+     * @return ActivoFijo.
+     */
+    public ActivoFijo obtenerActivo(ObjectId id) {
+        return activoFijoRepository.findById(id).get();
+    }
+
+    /**
+     * Método que crea los activos fijos.
+     *
+     * @param activoFijo activo a insertar.
+     * @return ActivoFijo.
+     */
+    public ActivoFijo crearActivo(ActivoFijo activoFijo) {
+        return activoFijoRepository.save(activoFijo);
+    }
+
+
 }

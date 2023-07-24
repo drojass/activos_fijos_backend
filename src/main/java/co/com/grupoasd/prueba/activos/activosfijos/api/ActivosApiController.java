@@ -23,12 +23,15 @@ import io.swagger.annotations.ApiResponses;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -83,19 +86,59 @@ public class ActivosApiController {
         } catch (Exception ex) {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
 
+    /**
+     * Servicio que retorna un activo fijo por ID.
+     *
+     * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
+     * @return ResponseEntity ActivoFijo
+     */
+    @ApiOperation(
+            value = "Método que retorna la lista de todos los activos fijos.",
+            response = ActivoFijo.class,
+            notes = "Web Service destinado a la consulta de los activos fijos.")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            code = 200,
+                            message = "Respuesta exitosa del componente",
+                            response = ActivoFijo.class),
+                    @ApiResponse(
+                            code = 400,
+                            message = "Bad Request",
+                            reference = "La solicitud realizada no cumple con las validaciones de datos implementada"),
+                    @ApiResponse(
+                            code = 403,
+                            message = "Access Denied",
+                            reference = "La petición debe llevar la cabecera Authorization con el token JWT"),
+                    @ApiResponse(
+                            code = 500,
+                            message = "Error interno del servidor")
+            }
+    )
+    @GetMapping(
+            value = "/activoFijo",
+            produces = {MediaType.APPLICATION_JSON_VALUE}
+    )
+    ResponseEntity<ActivoFijo> obtenerActivo(@RequestParam ObjectId id) {
+        try {
+            return new ResponseEntity<>(activoFijoIface.obtenerActivo(id), HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new ActivoFijo(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
      * Servicio para guardar el activo fijo.
      *
      * @author Diego Alejandro Rojas Suárez drojas@grupoasd.com
-     * @return ResponseEntity ObjActivos
+     * @return ResponseEntity ActivoFijo
      */
     @ApiOperation(
             value = "Método para crear un activo fijo.",
             response = ObjActivoFijo.class,
-            notes = "Web Service destinado para crear un activo fijo|.")
+            notes = "Web Service destinado para crear un activo fijo.")
     @ApiResponses(
             value = {
                     @ApiResponse(
@@ -119,12 +162,11 @@ public class ActivosApiController {
             value = "/crea",
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    ResponseEntity<ActivoFijo> crearActivo() {
+    ResponseEntity<ActivoFijo> crearActivo(@RequestBody ActivoFijo activoFijo) {
         try {
-            return new ResponseEntity<>(new ActivoFijo(), HttpStatus.OK);
+            return new ResponseEntity<>(activoFijoIface.crearActivo(activoFijo), HttpStatus.CREATED);
         } catch (Exception ex) {
             return new ResponseEntity<>(new ActivoFijo(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }
