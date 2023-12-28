@@ -15,6 +15,7 @@ package co.com.grupoasd.prueba.activos.activosfijos.handler;
 
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
+import co.com.grupoasd.prueba.activos.activosfijos.model.ObjEstado;
 import co.com.grupoasd.prueba.activos.activosfijos.repository.EstadoRepository;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,17 @@ public class EstadoHandler {
      */
     public List<Estado> obtenerEstados() {
         return estadoRepository.findAll();
+    }
+
+    /**
+     * Método para crear los estados de los activos.
+     * @param objEstado objeto a crear.
+     * @return Estado.
+     */
+    public Estado crearEstado(ObjEstado objEstado) {
+        Estado estado = new Estado();
+        estado.setId(objEstado.getIdEstado());
+        estado.setDescripcion(objEstado.getDescripcion());
+        return estadoRepository.save(estado);
     }
 }

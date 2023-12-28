@@ -14,7 +14,6 @@
 package co.com.grupoasd.prueba.activos.activosfijos.api;
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.Empleado;
-import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
 import co.com.grupoasd.prueba.activos.activosfijos.service.EmpleadoIface;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,7 +58,7 @@ public class EmpleadosApiController {
                     @ApiResponse(
                             code = 200,
                             message = "Respuesta exitosa del componente",
-                            response = Estado.class),
+                            response = Empleado.class),
                     @ApiResponse(
                             code = 400,
                             message = "Bad Request",

@@ -15,6 +15,7 @@ package co.com.grupoasd.prueba.activos.activosfijos.service.impl;
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
 import co.com.grupoasd.prueba.activos.activosfijos.handler.EstadoHandler;
+import co.com.grupoasd.prueba.activos.activosfijos.model.ObjEstado;
 import co.com.grupoasd.prueba.activos.activosfijos.service.EstadoIface;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,10 @@ public class EstadoImpl implements EstadoIface {
     @Override
     public List<Estado> obtenerEstados() {
         return estadoHandler.obtenerEstados();
+    }
+
+    @Override
+    public Estado crearEstado(ObjEstado objEstado) {
+        return estadoHandler.crearEstado(objEstado);
     }
 }

@@ -15,6 +15,7 @@
 package co.com.grupoasd.prueba.activos.activosfijos.service;
 
 import co.com.grupoasd.prueba.activos.activosfijos.entity.Estado;
+import co.com.grupoasd.prueba.activos.activosfijos.model.ObjEstado;
 import java.util.List;
 
 /**
@@ -24,4 +25,6 @@ import java.util.List;
  */
 public interface EstadoIface {
     List<Estado> obtenerEstados();
+
+    Estado crearEstado(ObjEstado objEstado);
 }
