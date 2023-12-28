@@ -24,7 +24,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * Bean que instancia la configuración de Swagger.
+ * Bean qué instancia la configuración de Swagger.
  *
  * @author Diego Alejandro Rojas Suárez drojasm@grupoasd.com
  */

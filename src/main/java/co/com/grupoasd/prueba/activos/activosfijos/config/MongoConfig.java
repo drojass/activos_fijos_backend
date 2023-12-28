@@ -1,6 +1,6 @@
 /*
  * Archivo: MongoConfig.java
- * Fecha: 2023-04-17
+ * Fecha: 2023-12-19
  * Todos los derechos de propiedad intelectual e industrial sobre esta
  * aplicacion son de propiedad exclusiva del GRUPO ASD S.A.S.
  * Su uso, alteracion, reproduccion o modificacion sin el debido
@@ -13,39 +13,34 @@
  */
 package co.com.grupoasd.prueba.activos.activosfijos.config;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.convert.DbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 /**
- * Bean que instancia la configuración de Mongo.
+ * Bean qué instancia la configuración de MongoDB.
  *
  * @author Diego Alejandro Rojas Suárez drojasm@grupoasd.com
  */
 @Configuration
-public class MongoConfig extends AbstractMongoClientConfiguration {
-    @Value("${spring.data.mongodb.uri}")
-    private String mongoUri;
+public class MongoConfig {
 
-    @Value("${spring.data.mongodb.database}")
-    private String databaseName;
-
-    @Override
-    protected String getDatabaseName() {
-        return databaseName;
-    }
-
+    /**
+     * Bean de clase.
+     *
+     * @return MappingMongoConverter.
+     */
     @Bean
-    public MongoClient mongoClient() {
-        return MongoClients.create(mongoUri);
-    }
-
-    @Bean
-    public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongoClient(), databaseName);
+    public MappingMongoConverter mappingMongoConverter(
+            MongoDbFactory mongoDbFactory, MongoMappingContext mongoMappingContext) {
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
+        MappingMongoConverter converter = new MappingMongoConverter(dbRefResolver, mongoMappingContext);
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+        return converter;
     }
 }
