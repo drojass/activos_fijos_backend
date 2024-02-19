@@ -23,7 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.info.BuildProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,13 +38,22 @@ import org.springframework.web.client.RestTemplate;
 @EnableMongoRepositories(basePackages = "co.com.grupoasd.prueba.activos")
 public class ActivosfijosApplication {
     private static final TimeZone DEFAULT_TIME_ZONE = TimeZone.getTimeZone("America/Bogota");
+
+    @Autowired
+    ApplicationContext applicationContext;
     @Autowired
     BuildProperties buildProperties;
 
+    /**
+     * Definición del post construct para la fecha y el ajuste de la configuración de Mongo.
+     */
     @PostConstruct
     public void init() {
         TimeZone.setDefault(DEFAULT_TIME_ZONE);
         log.info("Spring boot application running in UTC timezone :" + new Date());
+        MappingMongoConverter mappingMongoConverter =
+                applicationContext.getBean(MappingMongoConverter.class);
+        mappingMongoConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
     }
 
     public static void main(String[] args) {
